@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        <Text style={styles.title}>JBF Photo Gallery</Text>
+        <Text style={styles.title}>Photo Gallery</Text>
         <Image style={styles.userImage} source={require("./assets/icon.png")} />
       </View>
       <ScrollView>
