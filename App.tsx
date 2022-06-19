@@ -5,6 +5,7 @@ import Photo from "./screens/Photo";
 
 import { Amplify } from "aws-amplify";
 import awsconfig from "./src/aws-exports";
+import { useEffect } from "react";
 
 Amplify.configure(awsconfig);
 
