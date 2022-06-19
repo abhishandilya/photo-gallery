@@ -7,6 +7,7 @@ import awsconfig from "./src/aws-exports";
 import { useState } from "react";
 import Login from "./screens/Login";
 import { AuthContext, IAuthContext } from "./AuthContext";
+import { Pressable, Text } from "react-native";
 
 Amplify.configure(awsconfig);
 
@@ -21,6 +22,15 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const signOut = async () => {
+    try {
+      await Auth.signOut();
+      setIsLoggedIn(false);
+    } catch (error) {
+      console.log("Error signing out", error);
+    }
+  };
+
   const authContext: IAuthContext = {
     signIn: async (username, password) => {
       try {
@@ -32,7 +42,7 @@ export default function App() {
         console.log("Error signing in", error);
       }
     },
-    signOut: async () => {},
+    signOut: signOut,
   };
 
   return (
@@ -46,7 +56,14 @@ export default function App() {
               <Stack.Screen
                 name="Gallery"
                 component={Gallery}
-                options={{ title: "Photo Gallery" }}
+                options={{
+                  title: "Photo Gallery",
+                  headerRight: () => (
+                    <Pressable onPress={signOut}>
+                      <Text>Log out</Text>
+                    </Pressable>
+                  ),
+                }}
               />
               <Stack.Screen name="Photo" component={Photo} />
             </>
