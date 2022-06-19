@@ -3,6 +3,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Gallery from "./screens/Gallery";
 import Photo from "./screens/Photo";
 
+import { Amplify } from "aws-amplify";
+import awsconfig from "./src/aws-exports";
+
+Amplify.configure(awsconfig);
+
 export type RootStackParamList = {
   Gallery: {};
   Photo: {};
