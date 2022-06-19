@@ -14,19 +14,19 @@ export default function GalleryRow({
         <Pressable onPress={onPress}>
           <Image
             style={styles.galleryImage}
-            source={require("../assets/icon.png")}
+            source={require("../../assets/icon.png")}
           />
         </Pressable>
         <Pressable onPress={onPress}>
           <Image
             style={styles.galleryImage}
-            source={require("../assets/icon.png")}
+            source={require("../../assets/icon.png")}
           />
         </Pressable>
         <Pressable onPress={onPress}>
           <Image
             style={styles.galleryImage}
-            source={require("../assets/icon.png")}
+            source={require("../../assets/icon.png")}
           />
         </Pressable>
       </View>

@@ -3,9 +3,9 @@ import { DataStore, Storage } from "aws-amplify";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { RootStackParamList } from "../App";
+import { RootStackParamList } from "../../App";
 import GalleryRow from "../components/GalleryRow";
-import { Photo } from "../src/models";
+import { Photo } from "../models";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Gallery">;
 

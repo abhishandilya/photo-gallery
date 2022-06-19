@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 export default function Photo() {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../assets/icon.png")} />
+      <Image style={styles.image} source={require("../../assets/icon.png")} />
     </View>
   );
 }

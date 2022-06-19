@@ -1,13 +1,13 @@
+import { useState } from "react";
+import { Pressable, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Gallery from "./screens/Gallery";
-import Photo from "./screens/Photo";
+import { AuthContext, IAuthContext } from "./src/AuthContext";
+import Gallery from "./src/screens/Gallery";
+import Photo from "./src/screens/Photo";
+import Login from "./src/screens/Login";
 import { Amplify, Auth } from "aws-amplify";
 import awsconfig from "./src/aws-exports";
-import { useState } from "react";
-import Login from "./screens/Login";
-import { AuthContext, IAuthContext } from "./AuthContext";
-import { Pressable, Text } from "react-native";
 
 Amplify.configure(awsconfig);
 
