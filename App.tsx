@@ -50,7 +50,11 @@ export default function App() {
       <AuthContext.Provider value={authContext}>
         <Stack.Navigator>
           {!isLoggedIn ? (
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ title: "Photo Gallery" }}
+            />
           ) : (
             <>
               <Stack.Screen
