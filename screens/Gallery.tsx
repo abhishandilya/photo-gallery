@@ -3,17 +3,15 @@ import { DataStore, Storage } from "aws-amplify";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { RootStackParamList } from "../App";
 import GalleryRow from "../components/GalleryRow";
 import { Photo } from "../src/models";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Gallery">;
-
-export default function Gallery({ navigation }: Props) {
+export default function Gallery({ navigation }) {
   useEffect(() => {
     const getPhotos = async () => {
       const photos = await DataStore.query(Photo);
-      console.log(photos);
+      console.log("Retrieved all photo models!");
+
       try {
         // const fileList = await Storage.list("", { level: "private" });
         // console.log("File List:", fileList);
@@ -34,7 +32,7 @@ export default function Gallery({ navigation }: Props) {
         <GalleryRow
           title="June"
           onPress={() => {
-            navigation.navigate<"Photo">("Photo");
+            navigation.navigate("Photo");
           }}
         />
       </ScrollView>

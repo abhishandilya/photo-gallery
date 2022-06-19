@@ -3,30 +3,51 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Gallery from "./screens/Gallery";
 import Photo from "./screens/Photo";
 
-import { Amplify } from "aws-amplify";
+import { Amplify, Auth } from "aws-amplify";
 import awsconfig from "./src/aws-exports";
-import { useEffect } from "react";
+import { useState } from "react";
+import Login from "./screens/Login";
+import { AuthContext, IAuthContext } from "./AuthContext";
 
 Amplify.configure(awsconfig);
 
-export type RootStackParamList = {
-  Gallery: {};
-  Photo: {};
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const authContext: IAuthContext = {
+    signIn: async (username, password) => {
+      try {
+        await Auth.signIn(username, password);
+        setIsLoggedIn(true);
+        console.log("Signed in successfully!");
+      } catch (error) {
+        setIsLoggedIn(false);
+        console.log("Error signing in", error);
+      }
+    },
+    signOut: async () => {},
+  };
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Gallery">
-        <Stack.Screen
-          name="Gallery"
-          component={Gallery}
-          options={{ title: "Photo Gallery" }}
-        />
-        <Stack.Screen name="Photo" component={Photo} />
-      </Stack.Navigator>
+      <AuthContext.Provider value={authContext}>
+        <Stack.Navigator>
+          {!isLoggedIn ? (
+            <Stack.Screen name="Login" component={Login} />
+          ) : (
+            <>
+              <Stack.Screen
+                name="Gallery"
+                component={Gallery}
+                options={{ title: "Photo Gallery" }}
+              />
+              <Stack.Screen name="Photo" component={Photo} />
+            </>
+          )}
+        </Stack.Navigator>
+      </AuthContext.Provider>
     </NavigationContainer>
   );
 }
