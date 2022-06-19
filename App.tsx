@@ -3,13 +3,22 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Gallery from "./screens/Gallery";
 import Photo from "./screens/Photo";
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Gallery: {};
+  Photo: {};
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Photo Gallery">
-        <Stack.Screen name="Photo Gallery" component={Gallery} />
+      <Stack.Navigator initialRouteName="Gallery">
+        <Stack.Screen
+          name="Gallery"
+          component={Gallery}
+          options={{ title: "Photo Gallery" }}
+        />
         <Stack.Screen name="Photo" component={Photo} />
       </Stack.Navigator>
     </NavigationContainer>

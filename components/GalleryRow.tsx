@@ -1,26 +1,34 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 
-export default function GalleryRow({ title }: { title: string }) {
+export default function GalleryRow({
+  title,
+  onPress,
+}: {
+  title: string;
+  onPress: () => void;
+}) {
   return (
     <View style={styles.galleryRow}>
       <Text style={styles.galleryRowHeader}>{title}</Text>
       <View style={styles.imageWrap}>
-        <Image
-          style={styles.galleryImage}
-          source={require("../assets/icon.png")}
-        />
-        <Image
-          style={styles.galleryImage}
-          source={require("../assets/icon.png")}
-        />
-        <Image
-          style={styles.galleryImage}
-          source={require("../assets/icon.png")}
-        />
-        <Image
-          style={styles.galleryImage}
-          source={require("../assets/icon.png")}
-        />
+        <Pressable onPress={onPress}>
+          <Image
+            style={styles.galleryImage}
+            source={require("../assets/icon.png")}
+          />
+        </Pressable>
+        <Pressable onPress={onPress}>
+          <Image
+            style={styles.galleryImage}
+            source={require("../assets/icon.png")}
+          />
+        </Pressable>
+        <Pressable onPress={onPress}>
+          <Image
+            style={styles.galleryImage}
+            source={require("../assets/icon.png")}
+          />
+        </Pressable>
       </View>
     </View>
   );

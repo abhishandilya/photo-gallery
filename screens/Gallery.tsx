@@ -1,14 +1,33 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { RootStackParamList } from "../App";
 import GalleryRow from "../components/GalleryRow";
 
-export default function Gallery() {
+type Props = NativeStackScreenProps<RootStackParamList, "Gallery">;
+
+export default function Gallery({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <GalleryRow title="June" />
-        <GalleryRow title="May" />
-        <GalleryRow title="April" />
+        <GalleryRow
+          title="June"
+          onPress={() => {
+            navigation.navigate<"Photo">("Photo");
+          }}
+        />
+        <GalleryRow
+          title="May"
+          onPress={() => {
+            navigation.navigate<"Photo">("Photo");
+          }}
+        />
+        <GalleryRow
+          title="April"
+          onPress={() => {
+            navigation.navigate<"Photo">("Photo");
+          }}
+        />
       </ScrollView>
       <StatusBar style="auto" />
     </View>
