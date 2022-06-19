@@ -3,10 +3,13 @@ import { DataStore, Storage } from "aws-amplify";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { RootStackParamList } from "../App";
 import GalleryRow from "../components/GalleryRow";
 import { Photo } from "../src/models";
 
-export default function Gallery({ navigation }) {
+type Props = NativeStackScreenProps<RootStackParamList, "Gallery">;
+
+export default function Gallery({ navigation }: Props) {
   useEffect(() => {
     const getPhotos = async () => {
       const photos = await DataStore.query(Photo);

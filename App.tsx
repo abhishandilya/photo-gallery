@@ -2,7 +2,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Gallery from "./screens/Gallery";
 import Photo from "./screens/Photo";
-
 import { Amplify, Auth } from "aws-amplify";
 import awsconfig from "./src/aws-exports";
 import { useState } from "react";
@@ -11,7 +10,13 @@ import { AuthContext, IAuthContext } from "./AuthContext";
 
 Amplify.configure(awsconfig);
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Login: {};
+  Gallery: {};
+  Photo: {};
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
